@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core = "sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+    <Dialog id="dlgCreateOrder" title="Create Order" showHeader="false" contentWidth="30%" contentHeight="60%">
+       	<f:SimpleForm
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="Create Order"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label labelFor="inpCreateOrderId" text="Order Id" />
+				<Input value="" id="inpCreateOrderId" required="true" type="Number" />
+
+				<Label text="Customer Id" />
+				<Input value=""  id="inpCreateCustomerId" type="Number"  />
+
+               <Label text="Order Date" />
+              	<DatePicker
+					id="dpCreateOrderDate"
+					placeholder="Enter Date"/>
+                
+				<Label text="Employee Id" />
+				 <Input value="" id="inpCreateEmployeeId"></Input>
+
+				<Label text="Ship Name" />
+					<TextArea id="txtAreaCreateShipName" value="" showExceededText="true" maxLength="40" width="100%"/>
+
+                <Label text="Ship City" />
+				 <Input value="" id="inpCreateShipCity"></Input>
+				
+				<Label text="Ship Country" />
+				<ComboBox showSecondaryValues= "true" id="cbShipCountry">
+					<items>
+			        	<core:ListItem key="Fr" text="France" additionalText = "Fr"/>
+						<core:ListItem key="Br" text="Brazil" additionalText = "Br"/>
+						<core:ListItem key="In" text="India" additionalText = "In"/>
+						<core:ListItem key="Sg" text="Singapore" additionalText = "Sg"/>
+			    	</items>
+				</ComboBox>
+			</f:content>
+		</f:SimpleForm>
+        <buttons>
+            <Button type="Emphasized" text="Create" press="onCreateOrderPress"/>
+            <Button type="Transparent" text="Close" press="onCloseCreateDialogPress"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

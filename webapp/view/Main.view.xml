@@ -1,0 +1,125 @@
+<mvc:View controllerName="com.training.order.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core = "sap.ui.core"
+    xmlns:tnt="sap.tnt"
+    >
+    <Page id="page" title="{i18n>title}" showHeader="false">
+        <content>
+            <!-- <Button text="Create" type="Accept"></Button>
+            <Button text="Create" type="Attention"></Button>
+            <Button text="Create" type="Reject"></Button>
+            <Button text="Create" type="Transparent"></Button>
+            <Button text="Create" type="Emphasized"></Button>
+            <Button text="Create" type="Up"></Button>
+            <Button text="Create" type="Critical"></Button>
+
+
+            <Input ></Input>
+            <CheckBox ></CheckBox>
+            <RadioButton ></RadioButton>
+            <ComboBox ></ComboBox>
+            <Select ></Select>
+            <DatePicker ></DatePicker>
+            <DateRangeSelection ></DateRangeSelection>
+
+
+            <tnt:InfoLabel id="il1" text="My name is infolable with color scheme 2" renderMode="Narrow" colorScheme="2"/>
+
+
+            <Link text="Open message box"/>
+
+<tnt:ToolHeader id="shellLikeToolHeader" class="sapUiTinyMargin">
+<Button icon="sap-icon://menu2" type="Transparent" tooltip="Menu">
+				
+			</Button>
+            	<Image src="/image/saplogo.jpg" decorative="false" press="onLogoPressed" tooltip="SAP Logo">
+			</Image>
+</tnt:ToolHeader>
+-->
+          <!-- This is an addition comment -->
+	        <!-- <Avatar	src="/image/saplogo.jpg" displaySize="M"
+							displayShape="Circle"
+							showBorder="true"
+							press="onPress"/>  -->
+
+
+<Table id="tblOrder" alternateRowColors="true" 
+items="{
+path : '/Orders',
+sorter: {
+    path : 'OrderID',
+    descending: true
+}
+}" 
+growing="true" growingThreshold="20" growingScrollToLoad="true">
+
+    <headerToolbar>
+        <Toolbar>
+            <content>
+                <Title text="Order Information"/>
+                <ToolbarSpacer/>
+                <SearchField width="30%" enabled="true" placeholder="Search via Order Id, Employee Id.." search="onSearch"></SearchField>
+                <Button type="Emphasized" text="{i18n>addBtn}" press="onPressCreateOrder"></Button>
+                <Button type="Default" text="{i18n>exportBtn}" icon="sap-icon://excel-attachment" press="onExport"></Button>
+            </content>
+        </Toolbar>
+    </headerToolbar>
+
+    <columns>
+        <Column>
+            <Label design="Bold" text="{i18n>orderId}"></Label>
+        </Column>
+        <Column>
+            <Label design="Bold" text="{i18n>customerId}"></Label>
+        </Column>
+        <Column>
+            <Label design="Bold" text="Employee Id"></Label>
+        </Column>
+        <Column>
+            <Label text="Order Date"></Label>
+        </Column>
+        <Column>
+            <Label text="Ship Name"></Label>
+        </Column>
+        <Column>
+            <Label text="Ship City"></Label>
+        </Column>
+        <Column>
+            <Label text="Ship Country"></Label>
+        </Column>
+        <Column width="30%">
+            <Label text="Actions"></Label>
+        </Column>
+    </columns>
+
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Link class="txtOrderId" text="{OrderID}" press="onPressOrderId"></Link>
+                <Text text="{CustomerID}"></Text>
+                <HBox >
+                    <Text text="{EmployeeID}"></Text>
+                    <core:Icon visible="{= ${EmployeeID} === 7  || ${EmployeeID} === 8}" class="sapUiSmallMarginBegin"	src="sap-icon://accept"	color="#031E48" ></core:Icon>
+                </HBox>
+                
+                <Text text="{OrderDate}"></Text>
+                <Text text="{ShipName}"></Text>
+                <Text text="{ShipCity}"></Text>
+                <Text text="{ShipCountry}"></Text>
+                <HBox >
+                    <Button class="sapUiTinyMarginEnd defaultBtnClass" icon="sap-icon://edit" text="Edit" press="onPressEditOrder"></Button>
+                    <Button class="sapUiTinyMarginEnd" icon="sap-icon://delete" text="Delete" press="onPressDeleteOrder" ></Button>
+                </HBox>
+            </cells>
+        </ColumnListItem>
+    </items>
+
+</Table>
+
+
+
+
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,18 @@
+Escape Handler : 
+<Dialog xmlns="sap.m"
+  id="authDialog"
+  title="{i18n>DIALOG_TITLE}"
+  type="Message"
+  escapeHandler=".handleEscape"
+>
+
+handleEscape: function(pEscapePending) {
+  // Depending on the use case, call pEscapePending.resolve() or pEscapePending.reject() to overwrite the default behavior.
+},
+
+Create : 
+Define Id in the control :
+
+
+Edit : 
+

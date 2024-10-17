@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core = "sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+    <Dialog id="dlgEditOrder" title="Display Order" showHeader="false" contentWidth="30%" contentHeight="30%">
+       	<f:SimpleForm 
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="Display Order"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Order Id" />
+				<Input editable="false" value="{OrderID}" />
+
+				<Label text="Customer Id" />
+				<Input value="{CustomerID}" />
+
+               <Label text="Order Date" />
+                <Input value="{OrderDate}"></Input>
+                
+				<Label text="Employee Id" />
+				 <Input value="{EmployeeID}"></Input>
+
+				<Label text="Ship Name" />
+				<Input value="{ShipName}"></Input>
+
+                <Label text="Ship City" />
+				<Input value="{ShipCity}"></Input>
+
+				<Label text="Ship Country" />
+				<Input value="{ShipCountry}"></Input>
+			</f:content>
+		</f:SimpleForm>
+        <buttons>
+            <Button type="Emphasized" text="Update" press="onUpdateOrderDialogPress"/>
+             <Button type="Transparent" text="Close" press="onCloseEditDialogPress"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

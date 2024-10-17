@@ -1,0 +1,9 @@
+/* Enter your custom styles here */
+
+.txtOrderId {
+    color: blue
+}
+
+.defaultBtnClass .sapMBtnInner {
+    color : red!important;
+}

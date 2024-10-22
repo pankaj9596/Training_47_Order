@@ -3,6 +3,12 @@
     xmlns="sap.m"
     xmlns:core = "sap.ui.core"
     xmlns:tnt="sap.tnt"
+    xmlns:plugins="sap.m.plugins"
+    xmlns:columnmenu="sap.m.table.columnmenu"
+    xmlns:sap.ui.fl="sap.ui.fl"
+    xmlns:sap.ui.dt="sap.ui.dt"
+     xmlns:dnd="sap.ui.core.dnd"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     >
     <Page id="page" title="{i18n>title}" showHeader="false">
         <content>
@@ -44,7 +50,7 @@
 							press="onPress"/>  -->
 
 
-<Table id="tblOrder" alternateRowColors="true" 
+<Table id="tblOrder" alternateRowColors="true" autoPopinMode="true"
 items="{
 path : '/Orders',
 sorter: {
@@ -61,36 +67,60 @@ growing="true" growingThreshold="20" growingScrollToLoad="true">
                 <ToolbarSpacer/>
                 <SearchField width="30%" enabled="true" placeholder="Search via Order Id, Employee Id.." search="onSearch"></SearchField>
                 <Button type="Emphasized" text="{i18n>addBtn}" press="onPressCreateOrder"></Button>
+                <Button icon="sap-icon://action-settings" press="openPersoDialog" tooltip="Settings"/>
                 <Button type="Default" text="{i18n>exportBtn}" icon="sap-icon://excel-attachment" press="onExport"></Button>
             </content>
         </Toolbar>
     </headerToolbar>
-
+     <dependents>
+                <plugins:ColumnResizer columnResize="onColumnResize"/>
+                <columnmenu:Menu id="menu" beforeOpen="beforeOpenColumnMenu">
+                    <columnmenu:QuickSort change="onSort">
+                        <columnmenu:items>
+                            <columnmenu:QuickSortItem></columnmenu:QuickSortItem>
+                        </columnmenu:items>
+                    </columnmenu:QuickSort>
+                    <columnmenu:QuickGroup change="onGroup">
+                        <columnmenu:items>
+                            <columnmenu:QuickGroupItem></columnmenu:QuickGroupItem>
+                        </columnmenu:items>
+                    </columnmenu:QuickGroup>
+                    <columnmenu:items>
+                        <columnmenu:ActionItem icon="sap-icon://sort" label="Sort" press="onColumnHeaderItemPress"/>
+                        <columnmenu:ActionItem icon="sap-icon://group-2" label="Group" press="onColumnHeaderItemPress"/>
+                        <columnmenu:ActionItem icon="sap-icon://filter" label="Filter" press="onColumnHeaderItemPress"/>
+                        <columnmenu:ActionItem icon="sap-icon://table-column" label="Columns" press="onColumnHeaderItemPress"/>
+                    </columnmenu:items>
+                </columnmenu:Menu>
+            </dependents>
+     <dragDropConfig>
+                <dnd:DragDropInfo sourceAggregation="columns" targetAggregation="columns" dropPosition="Between" drop="onColumnMove"/>
+            </dragDropConfig>
     <columns>
-        <Column>
+        <Column app:p13nKey="orderId_col" importance="High">
             <Label design="Bold" text="{i18n>orderId}"></Label>
         </Column>
-        <Column>
+        <Column app:p13nKey="customerId_col" importance="Medium" visible="false">
             <Label design="Bold" text="{i18n>customerId}"></Label>
         </Column>
-        <Column>
+        <Column app:p13nKey="employeeId_col" importance="None">
             <Label design="Bold" text="Employee Id"></Label>
         </Column>
-        <Column>
+        <Column app:p13nKey="orderdate_col" importance="High" visible="false">
             <Label text="Order Date"></Label>
         </Column>
-        <Column>
+        <Column app:p13nKey="shipName_col" importance="Low" visible="false">
             <Label text="Ship Name"></Label>
         </Column>
-        <Column>
+        <Column app:p13nKey="shipCity_col" importance="Low" visible="false">
             <Label text="Ship City"></Label>
         </Column>
-        <Column>
+        <Column app:p13nKey="shipCountry_col" importance="Medium" visible="true">
             <Label text="Ship Country"></Label>
         </Column>
-        <Column width="30%">
+        <!-- <Column app:p13nKey="actions_col" importance="High" width="30%" visible="true">
             <Label text="Actions"></Label>
-        </Column>
+        </Column> -->
     </columns>
 
     <items>
@@ -107,10 +137,12 @@ growing="true" growingThreshold="20" growingScrollToLoad="true">
                 <Text text="{ShipName}"></Text>
                 <Text text="{ShipCity}"></Text>
                 <Text text="{ShipCountry}"></Text>
-                <HBox >
-                    <Button class="sapUiTinyMarginEnd defaultBtnClass" icon="sap-icon://edit" text="Edit" press="onPressEditOrder"></Button>
-                    <Button class="sapUiTinyMarginEnd" icon="sap-icon://delete" text="Delete" press="onPressDeleteOrder" ></Button>
-                </HBox>
+                <!-- <HBox >
+                    <Button visible="{= !${device>/system/phone}}" class="sapUiTinyMarginEnd defaultBtnClass" icon="sap-icon://edit" text="Edit" press="onPressEditOrder"></Button>
+                    <Button visible="{= !${device>/system/phone}}" class="sapUiTinyMarginEnd" icon="sap-icon://delete" text="Delete" press="onPressDeleteOrder" ></Button>
+                    <Button visible="{device>/system/phone}" class="sapUiTinyMarginEnd defaultBtnClass" icon="sap-icon://edit" press="onPressEditOrder"></Button>
+                    <Button visible="{device>/system/phone}" class="sapUiTinyMarginEnd" icon="sap-icon://delete" press="onPressDeleteOrder" ></Button>
+                </HBox> -->
             </cells>
         </ColumnListItem>
     </items>
